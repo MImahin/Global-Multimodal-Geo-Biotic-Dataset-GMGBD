@@ -49,6 +49,7 @@ GMGBD is one of the few automated pipelines that calculates **Distance to Water 
 The implementation of the `@safe_request` decorator and the **Threaded Watchdog** architecture addresses the industry-wide problem of "API Fatigue."
 > **Why it matters:** Our methodology ensures a **self-healing pipeline** capable of scaling from 25k to over 1M records without manual oversight.
 
+---
 
 ## 4. Technical Toolkit & API Integration
 
