@@ -5,7 +5,7 @@ import os
 import re
 
 
-IMAGE_FOLDER = r"C:\Mim\Dw project\Final Script\gmgbd_dataset_images" 
+IMAGE_FOLDER = r"images" 
 TEST_CSV = "test.csv"
 MODEL_NAME = "gemma3:4b"
 
@@ -110,4 +110,5 @@ def run_gemma_ollama_eval():
     print("="*45)
 
 if __name__ == "__main__":
+
     run_gemma_ollama_eval()
