@@ -50,51 +50,63 @@ The implementation of the `@safe_request` decorator and the **Threaded Watchdog*
 > **Why it matters:** Our methodology ensures a **self-healing pipeline** capable of scaling from 25k to over 1M records without manual oversight.
 
 ---
-
 ## 4. Technical Toolkit & API Integration
 
-The power of GMGBD lies in its integration of industry-leading APIs and machine learning models. Below are the details of the tools used to fetch, process, and enrich the dataset, along with their official technical documentation.
+The power of GMGBD lies in its integration of industry-leading APIs and machine learning models. Below are the details of the tools used to fetch, process, and enrich the dataset.
 
 ### 1. iNaturalist API (v1)
-* **Role:** Primary Data Source for Biodiversity Observations.
-* **Details:** iNaturalist is a global citizen science platform. We use their **Node.js API (v1)** to fetch "Research Grade" observations, ensuring species identity has been peer-verified.
-* **Functionality:** Provides raw image URLs, taxonomic hierarchy, and precise GPS coordinates for each sighting.
-* **API Documentation:** [iNaturalist API v1 Reference](https://api.inaturalist.org/v1/docs/)
+* **Role:** Primary Biodiversity Data Sourcing.
+* **Details:** We utilize the iNaturalist Node API to fetch "Research Grade" observations. This ensures the taxonomic identification is peer-verified.
+* **Functionality:** Provides high-resolution image URLs, taxonomic hierarchy (Scientific/Common names), and precise GPS coordinates.
+* **API Documentation:** [iNaturalist API v1](https://api.inaturalist.org/v1/docs/)
 
 ### 2. Salesforce BLIP-Large (Vision-Language Model)
-* **Role:** AI Visual Captioning & Scene Description.
-* **Details:** **BLIP (Bootstrapped Language-Image Pretraining)** is a state-of-the-art model. We utilize the `blip-image-captioning-large` variant (469M parameters) to generate natural language descriptions.
-* **Functionality:** Converts pixels into context-aware text (e.g., "a bird perched on a snowy branch"), enabling VLM training.
-* **Model Documentation:** [Hugging Face - Salesforce/blip-image-captioning-large](https://huggingface.co/Salesforce/blip-image-captioning-large)
+* **Role:** AI Visual Captioning.
+* **Details:** Hosted via Hugging Face, the `blip-image-captioning-large` model (469M parameters) is used to generate natural language descriptions of the wildlife images.
+* **Functionality:** Converts raw pixels into descriptive metadata, capturing visual context and behavior.
+* **Model Documentation:** [Hugging Face - BLIP Large](https://huggingface.co/Salesforce/blip-image-captioning-large)
 
-### 3. Open-Meteo Historical Weather API
-* **Role:** High-Resolution Climatic Enrichment.
-* **Details:** Open-Meteo offers a seamless global weather archive with **9km resolution**. It uses ERA5 reanalysis models to provide historical accuracy without relying on local station proximity.
-* **Data Points:** Historical mean temperature (°C) and elevation (m).
-* **API Documentation:** [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api)
+### 3. OpenStreetMap (Nominatim API)
+* **Role:** Reverse Geocoding.
+* **Details:** Used to convert raw Latitude and Longitude into administrative location data.
+* **Functionality:** Specifically extracts `country`, `state`, and `city/town/village` using the `jsonv2` format.
+* **Technical Note:** Implements a custom `User-Agent` and a 1.2s delay to comply with OSM's usage policy.
+* **API Documentation:** [Nominatim Reverse Geocoding](https://nominatim.org/release-docs/latest/api/Reverse/)
 
-### 4. Google Earth Engine (GEE)
-* **Role:** Planetary-Scale Geospatial Analysis.
-* **Details:** A cloud-based platform for multi-petabyte environmental datasets. We use the Python API to perform spatial joins between sightings and satellite imagery.
-* **Datasets Used:** * **MODIS (MOD13A1):** For Vegetation Indices.
-    * **HydroSHEDS:** For Hydrological distance mapping.
-* **API Documentation:** [Google Earth Engine Python API Guide](https://developers.google.com/earth-engine/guides/python_install)
+### 4. Open-Meteo API
+* **Role:** Historical Weather & Elevation Sourcing.
+* **Details:** Provides high-resolution historical weather reanalysis.
+* **Functionality:** Fetches the `elevation` (m) and the `temperature_2m_mean` (°C) for the specific date and GPS point of the observation.
+* **API Documentation:** [Open-Meteo Historical Archive](https://open-meteo.com/en/docs/historical-weather-api)
+
+### 5. Google Earth Engine (GEE)
+* **Role:** Planetary-Scale Geospatial Processing.
+* **Details:** Used to analyze multi-petabyte environmental datasets via the Python `ee` library.
+* **Specific Datasets:**
+    * **MODIS (MOD13A1.061):** Used for 16-day composite NDVI (Vegetation health) tracking.
+    * **WWF HydroSHEDS (15ACC):** Used to calculate the distance to the nearest stream or water body.
+* **API Documentation:** [Google Earth Engine Developers Guide](https://developers.google.com/earth-engine/)
 
 ---
 
 ## 5. NDVI Classification Logic
 
-To make satellite-derived vegetation data actionable for ecological research, GMGBD converts continuous NDVI values (normalized from **-1.0 to +1.0**) into categorical habitat types.
+The dataset converts raw satellite signal values into ecological categories to describe the habitat. Per the `get_ndvi_pro` implementation, raw values are scaled (divided by 10,000) and categorized as follows:
 
-The classification logic follows the specific thresholding implemented in the `get_ndvi_pro` function:
 
-| NDVI Range (Calculated) | Category | Typical Landscape |
+
+| NDVI Value Range | Category | Typical Landscape |
 | :--- | :--- | :--- |
-| **> 0.6** | **Dense** | Tropical rainforests, healthy forests, or peak-growth crops. |
-| **0.3 to 0.6** | **Moderate** | Shrublands, temperate woodlands, or maturing vegetation. |
-| **0.1 to 0.3** | **Sparse** | Grasslands, desert scrub, or plants under moisture stress. |
-| **< 0.1** | **Non-Veg** | Water bodies, snow, rock, or urban concrete. |
+| **> 0.6** | **Dense** | Tropical rainforests, dense forests, or healthy crops. |
+| **0.3 to 0.6** | **Moderate** | Temperate forests, shrublands, or maturing vegetation. |
+| **0.1 to 0.3** | **Sparse** | Grasslands, desert scrub, or moisture-stressed plants. |
+| **< 0.1** | **Non-Veg** | Water bodies, bare rock, sand, snow, or urban areas. |
 
+---
 
+## 6. System Architecture: The "Safe Request" Watchdog
 
-> **Implementation Note:** As per the code, the raw MODIS value is scaled by dividing by `10000.0` before rounding to 4 decimal places for high-precision environmental reporting.
+To handle the massive scale of 25,000+ records, GMGBD utilizes a custom-engineered **Threaded Watchdog** system:
+
+* **@safe_request Decorator:** A heavy-duty wrapper that prevents script hangs. If an API request stalls for more than 45 seconds, the system automatically triggers a 20-second "cool-off" period and resets the connection.
+* **Auto-Reset Logic:** The script processes data in batches of 20, re-initializing the Google Earth Engine connection after every batch to prevent socket leakage and memory overloads.
