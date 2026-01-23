@@ -110,3 +110,49 @@ To handle the massive scale of 25,000+ records, GMGBD utilizes a custom-engineer
 
 * **@safe_request Decorator:** A heavy-duty wrapper that prevents script hangs. If an API request stalls for more than 45 seconds, the system automatically triggers a 20-second "cool-off" period and resets the connection.
 * **Auto-Reset Logic:** The script processes data in batches of 20, re-initializing the Google Earth Engine connection after every batch to prevent socket leakage and memory overloads.
+
+
+---
+
+## 7. Data Dictionary & Feature Specifications
+
+The **GMGBD** dataset (v1.0) consists of **9,199 verified records** with 100% data completion (0 missing values). Each record represents a multimodal snapshot of a biodiversity event, merging visual descriptions with precise environmental telemetry.
+
+### Feature Overview
+
+| Column | Type | Description | Range / Unique Count |
+| :--- | :--- | :--- | :--- |
+| **filename** | String | Unique ID for the JPG image file. | 9199 unique (img_*.jpg) |
+| **scientific_name** | String | Latin taxonomic name of the species. | 4,775 unique species |
+| **common_name** | String | Standard English name of the species. | 4,766 unique names |
+| **latitude** | Float | Decimal coordinate (North/South). | -53.11 to 61.77 |
+| **longitude** | Float | Decimal coordinate (East/West). | -135.03 to 176.95 |
+| **sighting_date** | Date | YYYY-MM-DD format of the observation. | 1,164 unique dates |
+| **blip_caption** | Text | AI-generated visual scene description. | 5,371 unique semantic captions |
+| **country** | String | High-level administrative territory. | 108 unique countries |
+| **state** | String | First-level administrative division. | 717 unique states/provinces |
+| **city** | String | Local municipality or "Rural" indicator. | 2,379 unique localities |
+| **avg_temp_C** | Float | Mean temperature at time/point of sighting. | -23.9°C to 36.1°C |
+| **elevation_m** | Float | Altitude above sea level in meters. | -67.0m to 4,691.0m |
+| **NDVI_value** | Float | Quantified vegetation health index. | -0.1937 to 0.9417 |
+| **NDVI_Category** | String | Qualitative habitat classification. | 4 Categories (Non-Veg to Dense) |
+| **dist_to_water_m** | Float | Distance to the nearest water body. | 0.0m to 20,853.4km |
+
+---
+
+### Insights from the Audit
+
+* **Taxonomic Diversity:** With nearly **4,800 unique species**, the dataset offers a wide representation of global flora and fauna, making it ideal for large-scale species identification tasks.
+* **Climatic Breadth:** The temperature range covers extreme environments, from arctic conditions (**-23.9°C**) to tropical heat (**36.1°C**), allowing for climate-resilience studies.
+* **Geospatial Reach:** Observations span **108 countries**, providing a truly global context for Vision-Language Models to understand geographic variance in landscapes.
+* **VLM Richness:** The **5,371 unique BLIP captions** provide a diverse linguistic foundation for training models to "see" beyond just labels, describing specific actions and environmental backgrounds.
+
+
+
+---
+
+## 8. Conclusion & Significance
+
+The **Global Multi-modal Geo-Biodiversity Dataset (GMGBD)** represents a shift from "labels" to "context." By ensuring every image is anchored by exact historical weather, vegetation health, and hydrological data, we provide AI models with the "Ecological Context" they currently lack. 
+
+This dataset is uniquely positioned to train the next generation of **Context-Aware VLMs** capable of not only identifying an animal but understanding its relationship with its immediate environment.
