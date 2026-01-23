@@ -227,7 +227,7 @@ If you use the **GMGBD** dataset or the automated pipeline in your research, ple
 
 ```bibtex
 @dataset{gmgbd_2026,
-  author = {Your Name/Team},
+  author = {MImahin},
   title = {Global Multi-modal Geo-Biodiversity Dataset (GMGBD)},
   year = {2026},
   publisher = {GitHub},
