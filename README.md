@@ -232,7 +232,7 @@ If you use the **GMGBD** dataset or the automated pipeline in your research, ple
   year = {2026},
   publisher = {GitHub},
   journal = {GitHub Repository},
-  howpublished = {\url{[https://github.com/yourusername/gmgbd](https://github.com/yourusername/gmgbd)}}
+  howpublished = {\url{[https://github.com/MImahin/Global-Multimodal-Geo-Biotic-Dataset-GMGBD](https://github.com/MImahin/Global-Multimodal-Geo-Biotic-Dataset-GMGBD)}}
 }
 
 
