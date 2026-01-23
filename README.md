@@ -151,65 +151,50 @@ The **GMGBD** dataset (v1.0) consists of **9,199 verified records** with 100% da
 
 
 
-
 ## 8. Model Benchmarking & Evaluation
 
-To demonstrate the utility of the **GMGBD** dataset, we performed a comparative evaluation using two state-of-the-art vision models. We tested their ability to identify species with and without the supplementary environmental context provided by our pipeline.
+To demonstrate the utility of the GMGBD dataset, we performed a comparative evaluation using two state-of-the-art multimodal models. We tested their ability to identify species in two modes: Zero-Shot (Image Only) and Context-Enriched (Image + GMGBD Metadata).
 
 ### Evaluated Models
 
-#### A. [Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) (The "Contextual Lift")
-    * **Role:** High-performance Vision-Language Model (VLM).
-    * **Features:** Native support for high-resolution image understanding and complex reasoning.
-    * **Official Link:** [Hugging Face - Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct)
-
-#### B. [Gemma 3: 4B](https://huggingface.co/google/gemma-3-4b-it) (Baseline Performance)
-    * **Role:** Lightweight multimodal model.
-    * **Features:** Optimized for local inference and efficient natural world reasoning.
-    * **Official Link:** [Hugging Face - Google/Gemma-3-4B](https://huggingface.co/google/gemma-3-4b)
+* **[Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct):** A high-performance Vision-Language Model (VLM) by Alibaba Cloud, optimized for fine-grained image understanding and spatial reasoning.
+* **[Gemma 3: 4B](https://huggingface.co/google/gemma-3-4b-it):** Google’s latest lightweight multimodal model, establishing a baseline for efficient, local-inference biodiversity applications.
 
 ---
 
-### Performance Results (N=500 Samples)
+### Performance Metrics & Results (N=500 Samples)
 
-We measured **Full Species Accuracy** (exact match) and **Genus-Level Accuracy** (correct taxonomic group).
+We measured Full Species Accuracy (exact species match) and Genus-Level Accuracy (correct biological classification at the genus level).
 
-#### A. Qwen2.5-VL-3B-Instruct (The "Contextual Lift")
-The most significant finding was the "Contextual Lift"—the increase in accuracy when the model was provided with the GMGBD environmental metadata (Location, Temperature, NDVI).
+#### Qwen2.5-VL-3B-Instruct: The "Contextual Lift"
+The most significant finding of this study was the Contextual Lift. By providing the model with environmental metadata (Location, Temperature, and NDVI), we observed a measurable improvement in taxonomic identification.
 
 | Scenario | Full Species Accuracy | Genus-Level Accuracy |
-| :--- | :--- | :--- |
+| :--- | :---: | :---: |
 | **Standard (Image Only)** | 40.40% | 53.20% |
 | **With Context (GMGBD Enriched)** | **42.80%** | **54.20%** |
 
+**Detailed Experiment Analysis:**
+* **Net Species Gain:** +12 specific images were correctly identified only after the model received environmental context.
+* **Lift (5.00%):** 25 images improved their prediction quality (moving from incorrect to correct).
+* **Noise (2.60%):** 13 images were missed due to "context interference," where the metadata led the model away from a visually correct answer.
 
-
-**Experiment Analysis:**
-* **Net Species Gain:** +12 images correctly identified only after adding context.
-* **Lift:** 5.00% (25 images improved).
-* **Noice:** 2.60% (13 images missed).
-
-#### B. Gemma 3:4B (Baseline Performance)
-Gemma was tested to establish a baseline for smaller, local multimodal models.
+#### Gemma 3: 4B: Baseline Performance
+Gemma 3 was tested to establish the capability of smaller parameter models in biological reasoning. While lower in raw accuracy, it shows promise for edge-device deployment.
 
 | Metric | Accuracy |
-| :--- | :--- |
+| :--- | :---: |
 | **Full Species Accuracy** | 9.60% |
 | **Genus-Level Accuracy** | 16.60% |
 | **Few-Shot Accuracy** | 9.00% |
 
 ---
 
-### Key Findings from Evaluation
+### Key Findings & Insights
 
-1.  **Context Matters:** Providing the model with GMGBD's metadata (e.g., "Observed in Tanzania at 28°C near a water body") helped the model resolve "visually confusing" species that look similar but live in different climates.
-2.  **Reduced Noise:** While adding data can sometimes confuse a model, the **Net Gain** was positive in all categories, proving that GMGBD metadata is high-signal and ecologically relevant.
-3.  **Benchmark for Future VLMs:** The 42.8% accuracy of Qwen2.5-VL sets a strong baseline for the community to improve upon using the full 25,000-record GMGBD dataset.
-
-
-
-
-
+1. **Resolution of Cryptic Species:** Providing GMGBD's metadata (e.g., "Observed in Tanzania at 28°C near a dense forest canopy") helped the model differentiate between visually similar species that occupy different ecological niches.
+2. **High Signal-to-Noise Ratio:** While adding any extra data can introduce noise into a model's reasoning, the Net Gain remained strongly positive (+2.4% absolute increase), proving that GMGBD metadata is ecologically relevant.
+3. **Benchmarking the Future:** The 42.8% accuracy achieved by Qwen2.5-VL sets a rigorous baseline for the community. We encourage researchers to use the full GMGBD dataset to push these limits further.
 ---
 
 ## 9. Conclusion & Significance
