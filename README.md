@@ -158,12 +158,12 @@ To demonstrate the utility of the **GMGBD** dataset, we performed a comparative 
 
 ### Evaluated Models
 
-1.  **Qwen2.5-VL-3B-Instruct**
+#### A. [Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) (The "Contextual Lift")
     * **Role:** High-performance Vision-Language Model (VLM).
     * **Features:** Native support for high-resolution image understanding and complex reasoning.
     * **Official Link:** [Hugging Face - Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct)
 
-2.  **Gemma 3:4B (via Ollama)**
+#### B. [Gemma 3: 4B](https://huggingface.co/google/gemma-3-4b-it) (Baseline Performance)
     * **Role:** Lightweight multimodal model.
     * **Features:** Optimized for local inference and efficient natural world reasoning.
     * **Official Link:** [Hugging Face - Google/Gemma-3-4B](https://huggingface.co/google/gemma-3-4b)
