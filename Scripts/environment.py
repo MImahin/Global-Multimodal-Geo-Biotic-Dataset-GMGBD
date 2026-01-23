@@ -8,8 +8,8 @@ from datetime import datetime, timedelta
 import concurrent.futures
 
 # --- CONFIGURATION ---
-INPUT_CSV = "final_dataset_inat.csv"
-OUTPUT_CSV = "gmgbd_final_pro_ultimate.csv"
+INPUT_CSV = "final.csv"
+OUTPUT_CSV = "gmgbd.csv"
 GEE_PROJECT = 'get your project id'
 
 import concurrent.futures
@@ -40,7 +40,7 @@ def get_ndvi_pro(point, date_str):
  
     for i in range(5):
         current_year = base_year - i
-        if current_year < 2000: break # Stop if we go before satellite launch
+        if current_year < 2000: break 
         
         target_date = date_obj.replace(year=current_year)
         start = (target_date - timedelta(days=16)).strftime('%Y-%m-%d')
@@ -157,4 +157,5 @@ def main():
         time.sleep(5)
 
 if __name__ == "__main__":
+
     main()
