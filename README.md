@@ -1,6 +1,6 @@
 # GMGBD: Global Multi-modal Geo-Biodiversity Dataset
 
-GMGBD is a high-resolution, enriched dataset designed to bridge the gap between raw citizen science observations and deep ecological insights. By integrating **Vision-Language Models (VLM)** with **Geospatial Remote Sensing**, it provides a contextual understanding of biodiversity that goes beyond simple image classification. [checkout :](https://mimahin.github.io/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/)
+GMGBD is a high-resolution, enriched dataset designed to bridge the gap between raw citizen science observations and deep ecological insights. By integrating **Vision-Language Models (VLM)** with **Geospatial Remote Sensing**, it provides a contextual understanding of biodiversity that goes beyond simple image classification. [Checkout website](https://mimahin.github.io/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/)
 
 ---
 
