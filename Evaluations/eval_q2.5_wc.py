@@ -6,7 +6,7 @@ from tqdm import tqdm
 import os
 import re
 
-IMAGE_FOLDER = r"C:\Mim\Dw project\Final Script\gmgbd_dataset_images" 
+IMAGE_FOLDER = r"images" 
 TEST_CSV = "test.csv"
 MODEL_ID = "Qwen/Qwen2.5-VL-3B-Instruct"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -101,4 +101,5 @@ def run_context_eval():
     print("="*40)
 
 if __name__ == "__main__":
+
     run_context_eval()
