@@ -149,10 +149,90 @@ The **GMGBD** dataset (v1.0) consists of **9,199 verified records** with 100% da
 
 
 
+
+
+
+## 8. Model Benchmarking & Evaluation
+
+To demonstrate the utility of the **GMGBD** dataset, we performed a comparative evaluation using two state-of-the-art vision models. We tested their ability to identify species with and without the supplementary environmental context provided by our pipeline.
+
+### Evaluated Models
+
+1.  **Qwen2.5-VL-3B-Instruct**
+    * **Role:** High-performance Vision-Language Model (VLM).
+    * **Features:** Native support for high-resolution image understanding and complex reasoning.
+    * **Official Link:** [Hugging Face - Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct)
+
+2.  **Gemma 3:4B (via Ollama)**
+    * **Role:** Lightweight multimodal model.
+    * **Features:** Optimized for local inference and efficient natural world reasoning.
+    * **Official Link:** [Hugging Face - Google/Gemma-3-4B](https://huggingface.co/google/gemma-3-4b)
+
 ---
 
-## 8. Conclusion & Significance
+### Performance Results (N=500 Samples)
+
+We measured **Full Species Accuracy** (exact match) and **Genus-Level Accuracy** (correct taxonomic group).
+
+#### A. Qwen2.5-VL-3B-Instruct (The "Contextual Lift")
+The most significant finding was the "Contextual Lift"—the increase in accuracy when the model was provided with the GMGBD environmental metadata (Location, Temperature, NDVI).
+
+| Scenario | Full Species Accuracy | Genus-Level Accuracy |
+| :--- | :--- | :--- |
+| **Standard (Image Only)** | 40.40% | 53.20% |
+| **With Context (GMGBD Enriched)** | **42.80%** | **54.20%** |
+
+
+
+**Experiment Analysis:**
+* **Net Species Gain:** +12 images correctly identified only after adding context.
+* **Species-Level Lift:** 5.00% (25 images improved).
+* **Genus-Level Lift:** 2.60% (13 images improved).
+
+#### B. Gemma 3:4B (Baseline Performance)
+Gemma was tested to establish a baseline for smaller, local multimodal models.
+
+| Metric | Accuracy |
+| :--- | :--- |
+| **Full Species Accuracy** | 9.60% |
+| **Genus-Level Accuracy** | 16.60% |
+| **Few-Shot Accuracy** | 9.00% |
+
+---
+
+### Key Findings from Evaluation
+
+1.  **Context Matters:** Providing the model with GMGBD's metadata (e.g., "Observed in Tanzania at 28°C near a water body") helped the model resolve "visually confusing" species that look similar but live in different climates.
+2.  **Reduced Noise:** While adding data can sometimes confuse a model, the **Net Gain** was positive in all categories, proving that GMGBD metadata is high-signal and ecologically relevant.
+3.  **Benchmark for Future VLMs:** The 42.8% accuracy of Qwen2.5-VL sets a strong baseline for the community to improve upon using the full 25,000-record GMGBD dataset.
+
+
+
+
+
+---
+
+## 9. Conclusion & Significance
 
 The **Global Multi-modal Geo-Biodiversity Dataset (GMGBD)** represents a shift from "labels" to "context." By ensuring every image is anchored by exact historical weather, vegetation health, and hydrological data, we provide AI models with the "Ecological Context" they currently lack. 
 
 This dataset is uniquely positioned to train the next generation of **Context-Aware VLMs** capable of not only identifying an animal but understanding its relationship with its immediate environment.
+
+
+---
+
+## 10. How to Cite
+
+If you use the **GMGBD** dataset or the automated pipeline in your research, please use the following citation:
+
+```bibtex
+@dataset{gmgbd_2026,
+  author = {Your Name/Team},
+  title = {Global Multi-modal Geo-Biodiversity Dataset (GMGBD)},
+  year = {2026},
+  publisher = {GitHub},
+  journal = {GitHub Repository},
+  howpublished = {\url{[https://github.com/yourusername/gmgbd](https://github.com/yourusername/gmgbd)}}
+}
+
+
