@@ -8,7 +8,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: 'Onek Koste banaisi',
-  description: 'Created with v0',
+  description: 'A comprehensive dataset for global wildlife observations and environmental analysis.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -43,4 +43,5 @@ export default function RootLayout({
     </html>
   )
 }
+
 
