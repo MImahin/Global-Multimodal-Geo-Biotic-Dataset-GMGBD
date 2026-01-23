@@ -37,22 +37,22 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const visualizations = [
-    { id: 1, category: 'Global Distribution', title: 'Interactive Temperature Map', src: '/plots/map_temperature.html', type: 'html', description: 'Interactive global heatmap showing wildlife observations scaled by ambient temperature.' },
-    { id: 2, category: 'Global Distribution', title: 'Interactive Habitat Map (NDVI)', src: '/plots/map_habitat_ndvi.html', type: 'html', description: 'Interactive map displaying observations categorized by vegetation density layers.' },
-    { id: 3, category: 'Global Distribution', title: 'Scatter & Hexbin Density', src: '/plots/Observation by scatter and hexbin map.png', type: 'image', description: 'Point density analysis showing hotspots of biodiversity data collection.' },
-    { id: 4, category: 'Global Distribution', title: 'Global Wildlife Distribution', src: '/plots/Global Distribution of Wildlife Observations.png', type: 'image', description: 'Static overview of all 9,199 records across continents.' },
-    { id: 5, category: 'Statistical Distributions', title: 'Feature Distributions', src: '/plots/Distributions.png', type: 'image', description: 'Histograms showing the spread of elevation, temperature, and NDVI values.' },
-    { id: 6, category: 'Statistical Distributions', title: 'NDVI Category Breakdown', src: '/plots/ndvi_distribution.png', type: 'image', description: 'Frequency of observations across different vegetation health categories.' },
-    { id: 7, category: 'Correlation & Relationships', title: 'Elevation vs. Temperature', src: '/plots/elevation_temp_correlation.png', type: 'image', description: 'Regression analysis showing the environmental lapse rate within the dataset.' },
-    { id: 8, category: 'Correlation & Relationships', title: 'Numerical Correlation Matrix', src: '/plots/Correlation Matrix of Numerical Features.png', type: 'image', description: 'Heatmap showing dependencies between all geospatial and climatic variables.' },
-    { id: 9, category: 'Correlation & Relationships', title: 'Temp vs. Vegetation Index', src: '/plots/Relationship- Temperature vs Vegetation Index (NDVI).png', type: 'image', description: 'Correlation between thermal layers and vegetation health.' },
-    { id: 10, category: 'Temporal Patterns', title: 'Monthly Seasonality', src: '/plots/Observations by Month (Seasonality).png', type: 'image', description: 'Temporal analysis of when observations were recorded throughout the year.' },
-    { id: 11, category: 'Temporal Patterns', title: 'Seasonal Distribution Peaks', src: '/plots/Monthly Distributions (Seasonal Peaks).png', type: 'image', description: 'Density plots of environmental variables categorized by month.' },
-    { id: 12, category: 'Species Analysis', title: 'Temperature Niche (Top 5)', src: '/plots/Temperature Niche for Top 5 Species.png', type: 'image', description: 'The thermal range and preference for the most frequently observed species.' },
-    { id: 13, category: 'Frequency Analysis', title: 'Top 10 Frequencies', src: '/plots/Top 10 Frequencys.png', type: 'image', description: 'Count of the most common species identified in the dataset.' },
-    { id: 14, category: 'Frequency Analysis', title: 'Country Distribution', src: '/plots/country_distribution.png', type: 'image', description: 'Geographic breakdown of data contribution by nation.' },
-    { id: 15, category: 'Data Quality', title: 'Outlier Analysis', src: '/plots/Outlier Analysis (Symmetric Scale).png', type: 'image', description: 'Statistical cleaning showing the removal of environmental noise and sensor errors.' }
+const visualizations = [
+    { id: 1, category: 'Global Distribution', title: 'Interactive Temperature Map', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/map_temperature.html', type: 'html', description: 'Interactive global heatmap showing wildlife observations scaled by ambient temperature.' },
+    { id: 2, category: 'Global Distribution', title: 'Interactive Habitat Map (NDVI)', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/map_habitat_ndvi.html', type: 'html', description: 'Interactive map displaying observations categorized by vegetation density layers.' },
+    { id: 3, category: 'Global Distribution', title: 'Scatter & Hexbin Density', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Observation by scatter and hexbin map.png', type: 'image', description: 'Point density analysis showing hotspots of biodiversity data collection.' },
+    { id: 4, category: 'Global Distribution', title: 'Global Wildlife Distribution', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Global Distribution of Wildlife Observations.png', type: 'image', description: 'Static overview of all 9,199 records across continents.' },
+    { id: 5, category: 'Statistical Distributions', title: 'Feature Distributions', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Distributions.png', type: 'image', description: 'Histograms showing the spread of elevation, temperature, and NDVI values.' },
+    { id: 6, category: 'Statistical Distributions', title: 'NDVI Category Breakdown', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/ndvi_distribution.png', type: 'image', description: 'Frequency of observations across different vegetation health categories.' },
+    { id: 7, category: 'Correlation & Relationships', title: 'Elevation vs. Temperature', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/elevation_temp_correlation.png', type: 'image', description: 'Regression analysis showing the environmental lapse rate within the dataset.' },
+    { id: 8, category: 'Correlation & Relationships', title: 'Numerical Correlation Matrix', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Correlation Matrix of Numerical Features.png', type: 'image', description: 'Heatmap showing dependencies between all geospatial and climatic variables.' },
+    { id: 9, category: 'Correlation & Relationships', title: 'Temp vs. Vegetation Index', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Relationship- Temperature vs Vegetation Index (NDVI).png', type: 'image', description: 'Correlation between thermal layers and vegetation health.' },
+    { id: 10, category: 'Temporal Patterns', title: 'Monthly Seasonality', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Observations by Month (Seasonality).png', type: 'image', description: 'Temporal analysis of when observations were recorded throughout the year.' },
+    { id: 11, category: 'Temporal Patterns', title: 'Seasonal Distribution Peaks', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Monthly Distributions (Seasonal Peaks).png', type: 'image', description: 'Density plots of environmental variables categorized by month.' },
+    { id: 12, category: 'Species Analysis', title: 'Temperature Niche (Top 5)', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Temperature Niche for Top 5 Species.png', type: 'image', description: 'The thermal range and preference for the most frequently observed species.' },
+    { id: 13, category: 'Frequency Analysis', title: 'Top 10 Frequencies', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Top 10 Frequencys.png', type: 'image', description: 'Count of the most common species identified in the dataset.' },
+    { id: 14, category: 'Frequency Analysis', title: 'Country Distribution', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/country_distribution.png', type: 'image', description: 'Geographic breakdown of data contribution by nation.' },
+    { id: 15, category: 'Data Quality', title: 'Outlier Analysis', src: '/Global-Multimodal-Geo-Biotic-Dataset-GMGBD/plots/Outlier Analysis (Symmetric Scale).png', type: 'image', description: 'Statistical cleaning showing the removal of environmental noise and sensor errors.' }
   ];
 
   const dataFeatures = [
@@ -386,4 +386,5 @@ export default function Home() {
       </footer>
     </div>
   );
+
 }
