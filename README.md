@@ -186,8 +186,8 @@ The most significant finding was the "Contextual Lift"—the increase in accurac
 
 **Experiment Analysis:**
 * **Net Species Gain:** +12 images correctly identified only after adding context.
-* **Species-Level Lift:** 5.00% (25 images improved).
-* **Genus-Level Lift:** 2.60% (13 images improved).
+* **Lift:** 5.00% (25 images improved).
+* **Noice:** 2.60% (13 images missed).
 
 #### B. Gemma 3:4B (Baseline Performance)
 Gemma was tested to establish a baseline for smaller, local multimodal models.
