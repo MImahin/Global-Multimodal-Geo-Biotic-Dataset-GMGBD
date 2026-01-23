@@ -14,7 +14,7 @@ The following table highlights how **GMGBD** evolves the standard of biodiversit
 | **BioCube** (2025) | Multimodal "data cube" for modeling. | [HuggingFace](https://huggingface.co/datasets/BioDT/BioCube) / [Paper](https://arxiv.org/abs/2505.11568) | ~40k species | Audio, eDNA, low-res climate (0.25°). |
 | **CrypticBio** (2025) | Visually confusing species dataset. | [HuggingFace](https://huggingface.co/datasets/gmanolache/CrypticBio) / [Code](https://github.com/georgianagmanolache/crypticbio) | 166M images / 67k species | Taxonomy, misidentification logs. |
 | **iNatAg** (2025) | Agricultural-specific biodiversity. | [Dataset](https://github.com/ricber/digital-agriculture-datasets) / [Paper](https://openaccess.thecvf.com/content/CVPR2025W/V4A/html/Jain_iNatAg_Multi-Class_Classification_Models_Enabled_by_a_Large-Scale_Benchmark_Dataset_CVPRW_2025_paper.html) | 4.7M images / 2,959 species | Binary "Crop vs. Weed" labels. |
-| **GMGBD (Ours)** | **Contextual "Bio-Vision" dataset.** | **[Current Repository]** | **25k target (v1.0)** | **VLM Captions, Precise NDVI, Water Dist.** |
+| **GMGBD (Ours)** | **Contextual "Bio-Vision" dataset.** | [Link](https://github.com/MImahin/Global-Multimodal-Geo-Biotic-Dataset-GMGBD) | **25k target (v1.0)** | **VLM Captions, Precise NDVI, Water Dist.** |
 
 ---
 
