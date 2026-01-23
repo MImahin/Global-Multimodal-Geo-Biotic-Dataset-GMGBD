@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
 # --- CONFIGURATION ---
-IMAGE_DIR = "gmgbd_dataset_images"
-METADATA_CSV = "final_dataset_inat.csv"
+IMAGE_DIR = "images"
+METADATA_CSV = "final.csv"
 TOTAL_TARGET = 25000
 BATCH_SIZE = 40 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -120,4 +120,5 @@ def main():
     print(f"🏁 Mission Complete. {current_count} records saved to {METADATA_CSV}")
 
 if __name__ == "__main__":
+
     main()
