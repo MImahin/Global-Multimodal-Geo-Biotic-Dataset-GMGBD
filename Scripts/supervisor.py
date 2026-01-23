@@ -2,7 +2,6 @@ import subprocess
 import time
 import sys
 
-# --- CONFIGURATION ---
 SCRIPT_NAME = "environment.py"
 RESTART_INTERVAL = 300  # 5 minutes in seconds
 
@@ -27,4 +26,5 @@ def run_script():
             time.sleep(5)
 
 if __name__ == "__main__":
+
     run_script()
